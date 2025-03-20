@@ -26,7 +26,7 @@ if (!isset($_SESSION['username'])) { //if user tries to go to home page without 
     </h1>
 
     <div class="container">
-        <a href="logout.php" class="btn btn-primary mt-5">Log Out</a>
+        <a href="views/login.php" class="btn btn-primary mt-5">Log Out</a>
     </div>
 </body>
 
