@@ -56,7 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //if anything we request (in this ca
   <strong>This user already exists.</strong> Please try again!
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
    </div>';
-  } else {
+  }
+  ?>
+
+  <?php
+  if ($success) {
     echo
     '<div class="alert alert-success
    alert-dismissible fade show" role="alert">

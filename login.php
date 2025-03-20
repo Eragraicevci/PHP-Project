@@ -48,7 +48,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <strong>You are successfully logged in.</strong>
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
    </div>';
-    } else {
+    }
+    ?>
+
+    <?php
+    if ($invalid) {
         echo
         '<div class="alert alert-danger
    alert-dismissible fade show" role="alert">
@@ -56,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
    </div>';
     }
-
     ?>
 
     <h1 class="text-center mt-5">Log In</h1>
