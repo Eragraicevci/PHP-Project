@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION['username'])) { //if user tries to go to home page without logging in, redirect them to login page
-    header('location:login.php');
+    header('location:views/login.php');
 }
 ?>
 

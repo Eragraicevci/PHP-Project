@@ -4,7 +4,7 @@ $login = 0;
 $invalid = 0;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    include 'connect.php';
+    include '../config/connect.php';
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $login = 1;
             session_start(); //to store data so that user doesnt have to login each time they are on the platform
             $_SESSION['username'] = $username;
-            header('location:index.php');
+            header('location:../index.php');
         } else {
             $invalid = 1;
         }
@@ -26,22 +26,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login In Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Sign Up Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
 
 <body>
 
-
     <?php
-    if ($login) { //if login is successful
+    if ($login) { // If login is successful
         echo
         '<div class="alert alert-success
    alert-dismissible fade show" role="alert">
@@ -52,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ?>
 
     <?php
-    if ($invalid) {
+    if ($invalid) { // If invalid credentials
         echo
         '<div class="alert alert-danger
    alert-dismissible fade show" role="alert">
@@ -66,18 +65,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container mt-5">
         <form action="login.php" method="post">
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Username</label>
-                <input type="text" class="form-control"
-                    placeholder="Enter your username" name="username">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" placeholder="Enter your username" name="username" required>
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control"
-                    placeholder="Enter your password" name="password">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" placeholder="Enter your password" name="password" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Log In</button>
+            <button type="submit" class="btn btn-primary mb-5">Sign Up</button>
         </form>
     </div>
+
 
 </body>
 
