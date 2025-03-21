@@ -2,6 +2,7 @@
 
 $success = 0;
 $user = 0;
+$invalid = 0;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') { //if anything we request (in this case submit button) equals to post, show the below, in this case whatever is on connection.php
   include '../config/connect.php';
@@ -23,19 +24,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //if anything we request (in this ca
       // echo "This user already exists. Please try again!";
       $user = 1;
     } else {
-
-      //inserting the data into DB
-      $sql = "INSERT INTO `registration` (username, password, phone, email, surname, name, confirm_password) 
+      if ($password === $confirm_password) {
+        //inserting the data into DB
+        $sql = "INSERT INTO `registration` (username, password, phone, email, surname, name, confirm_password) 
         VALUES('$username', '$password', '$phone', '$email', '$surname', '$name', '$confirm_password')";
-
-
-      $result = mysqli_query($con, $sql);
-      if ($result) {
-        // echo "You’ve successfully signed up!";
-        $success = 1;
-        header('location:login.php');
+        $result = mysqli_query($con, $sql);
+        if ($result) {
+          $success = 1;
+          //  header('location:login.php');
+        }
       } else {
-        die(mysqli_error($con));
+        $invalid = 1;
       }
     }
   }
@@ -73,6 +72,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //if anything we request (in this ca
     '<div class="alert alert-success
    alert-dismissible fade show" role="alert">
   <strong>You’ve successfully signed up!</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div>';
+  }
+  ?>
+
+  <?php
+  if ($invalid) {
+    echo
+    '<div class="alert alert-danger
+   alert-dismissible fade show" role="alert">
+  <strong>Password and Confirm Password should be identical!</strong> Please try again!
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
    </div>';
   }
