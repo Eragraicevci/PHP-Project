@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //if anything we request (in this ca
 </head>
 
 <body>
-
+  <h1 class="text-center mb-5 mt-5">Pure Bliss Salon</h1>
   <?php
   if ($user) { //if user already exists on the DB
     echo
@@ -87,9 +87,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //if anything we request (in this ca
    </div>';
   }
   ?>
-
-  <h1 class="text-center mt-5">Sign Up</h1>
-  <div class="container mt-5">
+  <div class="container mt-5 mb-5">
+    <h2 class="text-center">
+      <img src="../assets/images/pink cheetah heart.png" alt="cheetah-icon" width="40">
+      Welcome <img src="../assets/images/pink cheetah heart.png" alt="cheetah-icon" width="40">
+    </h2>
     <form action="signup.php" method="post">
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
@@ -119,8 +121,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //if anything we request (in this ca
         <label for="confirmPassword" class="form-label">Confirm Password</label>
         <input type="password" class="form-control" placeholder="Confirm your password" name="confirm_password" required>
       </div>
-      <button type="submit" class="btn btn-primary mb-5">Sign Up</button>
+      <button type="submit" class="btn btn-primary mb-3">Sign Up</button>
     </form>
+
+    <p class="text-center">
+      Already have an account?
+      <a href="login.php" class="">Log In</a>
+    </p>
   </div>
 
 

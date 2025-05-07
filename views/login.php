@@ -61,8 +61,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     ?>
 
-    <h1 class="text-center mt-5">Log In</h1>
+    <h1 class="text-center mb-5 mt-5">Pure Bliss Salon</h1>
     <div class="container mt-5">
+        <h2 class="text-center">
+            <img src="../assets/images/pink cheetah heart.png" alt="cheetah-icon" width="40">
+            Welcome Back <img src="../assets/images/pink cheetah heart.png" alt="cheetah-icon" width="40">
+        </h2>
         <form action="login.php" method="post">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
@@ -72,8 +76,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" placeholder="Enter your password" name="password" required>
             </div>
-            <button type="submit" class="btn btn-primary mb-5">Sign Up</button>
+            <button type="submit" class="btn btn-primary mb-3">Log In</button>
         </form>
+
+        <p class="text-center">
+            Don’t have an account?
+            <a href="signup.php" class="">Register</a>
+        </p>
+
     </div>
 
 

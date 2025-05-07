@@ -1,72 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@300;500;600&display=swap");
+
 body {
-  background-color: #e9ecef;
-  font-family: "Arial", sans-serif;
+  background: linear-gradient(to right, #fce4ec, #f8bbd0);
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
 }
 
 .container {
   max-width: 600px;
   margin-top: 50px;
   padding: 40px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fff0f5;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 2px dashed #ffb6c1;
 }
 
 h1 {
-  font-size: 2.2rem;
-  color: #333;
+  font-size: 5rem;
+  color: #d81b60;
   margin-bottom: 30px;
+  font-family: "Dancing Script", cursive;
+  text-align: center;
 }
 
-.form-control {
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 12px;
-  font-size: 1rem;
-}
-
-.btn-primary {
-  background-color: #4caf50;
-  border-color: #4caf50;
-  border-radius: 10px;
-  padding: 12px 20px;
-  width: 100%;
-  font-size: 1.2rem;
-}
-
-.btn-custom {
-  background-color: #4c4caf;
-  border-radius: 10px;
-  padding: 12px 20px;
-  width: 100%;
-  font-size: 1.2rem;
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #45a049;
-  border-color: #45a049;
+h2 {
+  font-size: 2.5rem;
+  color: #d81b60;
+  margin-bottom: 30px;
+  font-family: "Dancing Script", cursive;
+  text-align: center;
 }
 
 .form-label {
-  font-weight: 600;
-  color: #555;
+  font-weight: 500;
+  color: #b03a63;
+}
+
+.form-control {
+  border-radius: 12px;
+  border: 1px solid #f8bbd0;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 14px;
+  font-size: 1rem;
+  background-color: #fff;
+  transition: 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #ec407a;
+  box-shadow: 0 0 8px rgba(236, 64, 122, 0.4);
+}
+
+.btn-primary {
+  background-color: #ec407a;
+  color: #ffffff;
+  font-family: "Dancing Script", cursive;
+  font-weight: 800;
+  font-size: 1.6rem;
+  border: 5px solid transparent;
+  border-radius: 12px;
+  padding: 10px 20px;
+  width: 100%;
+  transition: 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: url("../assets/images/cheetah text print.jpg") repeat;
+  background-size: cover;
+  border-radius: 12px;
+  z-index: -1;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.8);
+  filter: brightness(0.6) contrast(1.5);
+}
+
+.btn-primary span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-primary:hover {
+  background-color: #d81b60;
+  border-color: #d81b60;
+  box-shadow: 0 0 10px rgba(216, 27, 96, 0.5);
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.alert-success,
+.alert-danger {
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.1rem;
 }
 
 .mb-3 {
   margin-bottom: 2rem;
 }
 
-.contact-container {
-  max-width: 600px;
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  margin: 50px auto;
+.welcome-card {
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
 }
 
-label {
-  font-weight: 600;
-  margin-bottom: 5px;
+.welcome-card h2 {
+  color: #d81b60;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+}
+
+.welcome-card p {
+  color: #555;
+}
+
+.logout-btn {
+  background-color: #d81b60;
+  border: none;
+}
+
+.logout-btn:hover {
+  background-color: #ad1457;
+}
+
+.container img {
+  width: 70px;
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+.container p {
+  color: #d81b60;
+}
+
+.container a {
+  color: #ba5c7d;
 }

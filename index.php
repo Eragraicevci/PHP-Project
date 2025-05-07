@@ -1,8 +1,7 @@
 <?php
-
 session_start();
 
-if (!isset($_SESSION['username'])) { //if user tries to go to home page without logging in, redirect them to login page
+if (!isset($_SESSION['username'])) {
     header('location:views/login.php');
 }
 ?>
@@ -13,20 +12,17 @@ if (!isset($_SESSION['username'])) { //if user tries to go to home page without 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Welcome to Radiance Beauty</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
-    <h1 class="text-center text-warning mt-5">
-        Welcome
-        <?php
-        echo $_SESSION['username'];
-        ?>
-    </h1>
-
-    <div class="container">
-        <a href="views/login.php" class="btn btn-primary mt-5">Log Out</a>
+    <h1 class="text-center mb-5 mt-5">Pure Bliss Salon</h1>
+    <div class="container mt-5 mb-5">
+        <h1>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
+        <p class="lead text-muted">You're now logged in to Radiance Beauty Salon.</p>
+        <a href="views/logout.php" class="btn logout-btn text-white mt-4">Log Out</a>
     </div>
 </body>
 
