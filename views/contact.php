@@ -37,47 +37,58 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-
-    <?php
-    if ($success) {
-        echo
-        '<div class="alert alert-success
+    <div id="page-content" style="opacity: 0;">
+        <?php
+        if ($success) {
+            echo
+            '<div class="alert alert-success
    alert-dismissible fade show" role="alert">
   <strong>We have successfully received your message. We will contact you soon :).</strong>
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
    </div>';
-    }
-    ?>
+        }
+        ?>
 
-    <h1 class="text-center mt-5">Contact Us</h1>
+        <h1 class="text-center mt-5">Contact Us</h1>
 
-    <div class="container">
-        <div class="contact-container">
-            <form action="contact.php" method="post">
-                <div class="mb-3">
-                    <label class="form-label">Name</label>
-                    <input type="text" class="form-control" name="name" placeholder="Enter your name">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Surname</label>
-                    <input type="text" class="form-control" name="surname" placeholder="Enter your surname">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Email Address</label>
-                    <input type="email" class="form-control" name="email" placeholder="Enter your email address">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Phone Number</label>
-                    <input type="text" class="form-control" name="phone" placeholder="Enter your phone number">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Comment</label>
-                    <textarea class="form-control" name="comment" rows="4" placeholder="Enter your comment"></textarea>
-                </div>
-                <button type="submit" class="btn btn-custom">Submit</button>
-            </form>
+        <div class="container">
+            <div class="contact-container">
+                <form action="contact.php" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="Enter your name">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Surname</label>
+                        <input type="text" class="form-control" name="surname" placeholder="Enter your surname">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-control" name="email" placeholder="Enter your email address">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phone Number</label>
+                        <input type="text" class="form-control" name="phone" placeholder="Enter your phone number">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Comment</label>
+                        <textarea class="form-control" name="comment" rows="4" placeholder="Enter your comment"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-custom">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const pageContent = document.getElementById("page-content");
+            if (pageContent) {
+                requestAnimationFrame(() => {
+                    pageContent.style.opacity = "1";
+                });
+            }
+        });
+    </script>
 
 </body>
 
