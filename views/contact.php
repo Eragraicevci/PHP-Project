@@ -1,26 +1,48 @@
 <?php
-
 $success = 0;
+include '../config/connect.php';
+
+$slot_query = "SELECT * FROM available_slots ORDER BY slot_date, slot_time";
+$slot_result = mysqli_query($con, $slot_query);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    include '../config/connect.php';
-    $name = $_POST['name'];
-    $surname = $_POST['surname'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $comment = $_POST['comment'];
+    if (
+        empty($_POST['name']) || empty($_POST['surname']) || empty($_POST['email']) ||
+        empty($_POST['phone']) || empty($_POST['slot_id'])
+    ) {
+        die("Please fill in all required fields including selecting a time slot.");
+    }
+
+    $name = mysqli_real_escape_string($con, $_POST['name']);
+    $surname = mysqli_real_escape_string($con, $_POST['surname']);
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+    $phone = mysqli_real_escape_string($con, $_POST['phone']);
+    $comment = mysqli_real_escape_string($con, $_POST['comment']);
+    $slot_id = (int)$_POST['slot_id'];
 
     if ($con) {
-        $sql = "INSERT INTO `contact` (name, surname, email, phone, comment) 
-        VALUES('$name', '$surname', '$email', '$phone', '$comment')";
+        $slot_info_query = mysqli_query($con, "SELECT slot_date, slot_time FROM available_slots WHERE id = $slot_id");
+
+        if (!$slot_info_query || mysqli_num_rows($slot_info_query) == 0) {
+            die("Invalid or already booked timeslot. Please refresh and try again.");
+        }
+
+        $slot_info = mysqli_fetch_assoc($slot_info_query);
+        $slot_date = $slot_info['slot_date'];
+        $slot_time = $slot_info['slot_time'];
+
+        $sql = "INSERT INTO `contact` (name, surname, email, phone, comment, slot_date, slot_time) 
+                VALUES('$name', '$surname', '$email', '$phone', '$comment', '$slot_date', '$slot_time')";
         $result = mysqli_query($con, $sql);
+
         if ($result) {
+            mysqli_query($con, "DELETE FROM available_slots WHERE id = $slot_id");
             $success = 1;
         } else {
-            die(mysqli_error($con));
+            die("Database insert error: " . mysqli_error($con));
         }
     } else {
-        die(mysqli_error($con));
+        die("Database connection error: " . mysqli_error($con));
     }
 }
 ?>
@@ -56,26 +78,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <form action="contact.php" method="post">
                     <div class="mb-3">
                         <label class="form-label">Name</label>
-                        <input type="text" class="form-control" name="name" placeholder="Enter your name">
+                        <input type="text" class="form-control" name="name" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Surname</label>
-                        <input type="text" class="form-control" name="surname" placeholder="Enter your surname">
+                        <input type="text" class="form-control" name="surname" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Email Address</label>
-                        <input type="email" class="form-control" name="email" placeholder="Enter your email address">
+                        <input type="email" class="form-control" name="email" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Phone Number</label>
-                        <input type="text" class="form-control" name="phone" placeholder="Enter your phone number">
+                        <input type="text" class="form-control" name="phone" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Comment</label>
-                        <textarea class="form-control" name="comment" rows="4" placeholder="Enter your comment"></textarea>
+                        <textarea class="form-control" name="comment" rows="4"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Select a Time Slot</label>
+                        <select name="slot_id" class="form-control" required>
+                            <option value="" disabled selected>Select a time</option>
+                            <?php while ($slot = mysqli_fetch_assoc($slot_result)) : ?>
+                                <option value="<?= $slot['id'] ?>">
+                                    <?= htmlspecialchars($slot['slot_date']) . ' at ' . substr($slot['slot_time'], 0, 5) ?>
+                                </option>
+                            <?php endwhile; ?>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-custom">Submit</button>
                 </form>
+
             </div>
         </div>
     </div>

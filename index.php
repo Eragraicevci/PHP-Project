@@ -45,6 +45,18 @@ if (!isset($_SESSION['username'])) {
         </div>
     </div>
 
+    <?php
+    $allowed_users = ['ee1', 'manager1']; // add usernames who get access
+
+    if (in_array($_SESSION['username'], $allowed_users)) {
+        echo '
+    <div class="mt-5 text-center">
+        <a href="./views/timeslot.php" class="btn btn-warning">Manage Appointment Slots</a>
+    </div>';
+    }
+    ?>
+
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const kissContainer = document.getElementById("kiss-container");
