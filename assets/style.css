@@ -3,7 +3,8 @@
 body {
   background: linear-gradient(to right, #fce4ec, #f8bbd0);
   font-family: "Poppins", sans-serif;
-  min-height: 100vh;
+  height: auto;
+  min-height: unset;
   align-items: center;
   justify-content: center;
   margin: 0;
@@ -388,4 +389,48 @@ h2 {
 #page-content {
   opacity: 0;
   transition: opacity 1.2s ease-in;
+}
+
+.add-timeslot-btn {
+  color: #85153b;
+  text-decoration: underline;
+}
+
+.timeslot-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.dashboard-link {
+  text-align: left;
+  margin: 20px auto 0 auto;
+  width: 100%;
+  max-width: 150px;
+  margin-left: 100px;
+  border-radius: 50px;
+}
+
+.dashboard-link a {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.3rem;
+  color: #d81b60;
+  padding: 10px 25px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.dashboard-link a:hover {
+  text-decoration: underline;
+}
+
+.dashboard-wrapper {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.dashboard-card {
+  max-width: 500px;
+  margin: 0 auto;
 }

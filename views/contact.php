@@ -50,6 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html lang="en">
 
+<?php include '../includes/header.php'; ?>
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,9 +74,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         ?>
 
-        <h1 class="text-center mt-5">Contact Us</h1>
+        <h1 class="text-center mt-5">Book an appointment</h1>
 
-        <div class="container">
+        <div class="container mb-5">
             <div class="contact-container">
                 <form action="contact.php" method="post">
                     <div class="mb-3">
@@ -93,13 +96,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="text" class="form-control" name="phone" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Comment</label>
+                        <label class="form-label">Specific Requirements</label>
                         <textarea class="form-control" name="comment" rows="4"></textarea>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Select a Time Slot</label>
                         <select name="slot_id" class="form-control" required>
-                            <option value="" disabled selected>Select a time</option>
+                            <option value="" disabled selected>Select a date & time</option>
                             <?php while ($slot = mysqli_fetch_assoc($slot_result)) : ?>
                                 <option value="<?= $slot['id'] ?>">
                                     <?= htmlspecialchars($slot['slot_date']) . ' at ' . substr($slot['slot_time'], 0, 5) ?>
@@ -107,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <?php endwhile; ?>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-custom">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
 
             </div>

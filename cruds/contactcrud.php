@@ -24,7 +24,9 @@ include '../config/connect.php'
                     <th scope="col">Surname</th>
                     <th scope="col">Email Address</th>
                     <th scope="col">Phone Number</th>
-                    <th scope="col">Message</th>
+                    <th scope="col">Requirement</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
                     <th scope="col">Operations</th>
                 </tr>
             </thead>
@@ -42,6 +44,8 @@ include '../config/connect.php'
                         $email = $row['email'];
                         $phone = $row['phone'];
                         $comment = $row['comment'];
+                        $slot_date = $row['slot_date'];
+                        $slot_time = $row['slot_time'];
                         echo '<tr>
                     <th scope="row">' . $id . '</th>
                     <td>' . $name . '</td>
@@ -49,6 +53,8 @@ include '../config/connect.php'
                     <td>' . $email . '</td>
                     <td>' . $phone . '</td>
                     <td>' . $comment . '</td>
+                      <td>' . $slot_date . '</td>
+                    <td>' . $slot_time . '</td>
                     <td>
                     <button class="btn btn-info"><a href="../operations/contactupdate.php?contactUpdateId=' . $id . '" class="text-light">Update</a></button>
                     <button class="btn btn-danger"><a href="../operations/contactdelete.php?contactDeleteId=' . $id . '"  class="text-light">Delete</a></button>

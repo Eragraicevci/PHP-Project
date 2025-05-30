@@ -1,29 +1,16 @@
-<?php
-session_start();
-
-if (!isset($_SESSION['username'])) {
-    header('location:views/login.php');
-}
-?>
-
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Pure Bliss</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
 
-    <div id="kiss-container"></div>
-    <div class="profile">
-        <h1>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?> <img src="assets/images/pink cheetah heart.png" alt="cheetah-icon" width="30"></h1>
-        <a href="views/logout.php" class="btn logout-btn text-white">Log Out</a>
-    </div>
+    <?php include 'includes/header.php'; ?>
 
     <h1 class="text-center mb-5 mt-5">Pure Bliss Salon</h1>
 
@@ -44,17 +31,6 @@ if (!isset($_SESSION['username'])) {
             <button class="book-btn" data-href="views/contact.php">Book Now</button>
         </div>
     </div>
-
-    <?php
-    $allowed_users = ['ee1', 'manager1']; // add usernames who get access
-
-    if (in_array($_SESSION['username'], $allowed_users)) {
-        echo '
-    <div class="mt-5 text-center">
-        <a href="./views/timeslot.php" class="btn btn-warning">Manage Appointment Slots</a>
-    </div>';
-    }
-    ?>
 
 
     <script>

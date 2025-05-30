@@ -30,6 +30,8 @@ $result = $con->query("
 <!DOCTYPE html>
 <html>
 
+<?php include '../includes/header.php'; ?>
+
 <head>
     <title>Time Slot Dashboard</title>
     <meta charset="utf-8">
@@ -38,46 +40,50 @@ $result = $con->query("
     <link rel="stylesheet" href="../assets/style.css">
 </head>
 
-<body class="container mt-5">
-    <h2>Available Time Slots</h2>
+<body>
+    <div class="container mt-5">
+        <h2>Available Timeslots</h2>
 
-    <?php if (!$result): ?>
-        <div class="alert alert-danger">
-            SQL Error: <?= $con->error ?>
-        </div>
-    <?php endif; ?>
+        <?php if (!$result): ?>
+            <div class="alert alert-danger">
+                SQL Error: <?= $con->error ?>
+            </div>
+        <?php endif; ?>
 
-    <table class="table table-bordered mt-4">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if ($result && $result->num_rows > 0): ?>
-                <?php while ($row = $result->fetch_assoc()): ?>
-                    <tr>
-                        <td><?= $row['id'] ?></td>
-                        <td><?= htmlspecialchars($row['slot_date']) ?></td>
-                        <td><?= htmlspecialchars($row['slot_time']) ?></td>
-                        <td>
-                            <a href="timeslotcrud.php?delete_id=<?= $row['id'] ?>"
-                                class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this slot?');">Delete</a>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            <?php else: ?>
+        <table class="table table-bordered mt-4">
+            <thead>
                 <tr>
-                    <td colspan="4" class="text-center">No available time slots.</td>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Action</th>
                 </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php if ($result && $result->num_rows > 0): ?>
+                    <?php while ($row = $result->fetch_assoc()): ?>
+                        <tr>
+                            <td><?= $row['id'] ?></td>
+                            <td><?= htmlspecialchars($row['slot_date']) ?></td>
+                            <td><?= htmlspecialchars($row['slot_time']) ?></td>
+                            <td>
+                                <a href="timeslotcrud.php?delete_id=<?= $row['id'] ?>"
+                                    class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this slot?');">Delete</a>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="4" class="text-center">No available timeslots.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
 
-    <a href="../views/timeslot.php" class="btn btn-secondary">Back to Add Slot</a>
+        <div class="timeslot-container">
+            <a href="../views/timeslot.php" class="btn add-timeslot-btn">Add a new timeslot</a>
+        </div>
+
 </body>
 
 </html>
